@@ -4,12 +4,6 @@ A clean and responsive HTML landing page for **MS Water Plant**, a local RO wate
 
 ---
 
-## 🌐 Live Preview
-
-> *(Coming soon via GitHub Pages or hosting)*
-
----
-
 ## 📄 Features
 
 - 📦 Single-page HTML site
@@ -48,8 +42,8 @@ ms-water-plant/
 ## 📞 Contact
 
 **M Suri Babu**  
-📧 Email: suribabumokamatla@gmail.com  
-📞 Phone: 6301413229  
+📧 Email: suribabum@gmail.com  
+📞 Phone: 630141****9  
 GitHub: [@Ravi123sv](https://github.com/Ravi123sv)
 
 ---
