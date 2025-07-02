@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MS Water Supplies</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://static.vecteezy.com/system/resources/thumbnails/049/127/976/small/closed-uo-water-flow-wave-background-in-blue-color-photo.jpeg');
+            background-size: cover;
+            color: #fff;
+        }
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 10px;
+            z-index: 1000;
+        }
+        header h1 {
+            margin: 0;
+            color: #007BFF;
+        }
+        .container {
+            margin-top: 70px;
+            text-align: center;
+        }
+        .panel {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px auto;
+            width: 80%;
+            max-width: 600px; /* Limit the width for better appearance */
+        }
+        .btn {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .hidden {
+            display: none;
+        }
+        .feedback {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #007BFF;
+            border-radius: 5px;
+            display: none; /* Hide by default */
+        }
+        footer {
+            margin-top: 20px;
+            color: #fff;
+            text-align: center;
+        }
+        .slideshow-container {
+            position: relative;
+            max-width: 100%;
+            margin: auto;
+        }
+        .mySlides {
+            display: none;
+        }
+        .caption {
+            color: #f2f2f2;
+            font-size: 15px;
+            padding: 10px;
+            text-align: center;
+        }
+        .active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>MS Water Supplies</h1>
+</header>
+
+<div class="container">
+    <div class="panel" id="homePanel">
+        <h2>Welcome to MS Water Supplies!</h2>
+        <p>We provide clean and safe water for your needs. Order your water supply today!</p>
+        <button class="btn" onclick="showRegister()">Register</button>
+        <button class="btn" onclick="showLogin()">Login</button>
+        <div>
+            <label for="language">Choose Language:</label>
+            <select id="language" onchange="changeLanguage()">
+                <option value="en">English</option>
+                <option value="te">తెలుగు</option>
+            </select>
+        </div>
+
+        <div class="slideshow-container">
+            <div class="mySlides active">
+                <img src="https://www.aquasafewater.in/wp-content/uploads/2000-LPH-RO-Water-Plant-Price.jpg" style="width:100%">
+                <div class="caption">2000 LPH RO Water Plant</div>
+            </div>
+            <div class="mySlides">
+                <img src="https://5.imimg.com/data5/SELLER/Default/2021/7/ST/OS/OU/46072698/ro-water-20ltrs-with-normal-jar-500x500.jpg" style="width:100%">
+                <div class="caption">RO Water in Normal Tins</div>
+            </div>
+            <div class="mySlides">
+                <img src="https://content.jdmagicbox.com/comp/aurangabad-maharashtra/z4/9999px240.x240.151209153637.g9z4/catalogue/oxyren-mineral-water-satara-parisar-aurangabad-maharashtra-water-suppliers-l9dr3rp-250.jpg" style="width:100%">
+                <div class="caption">Home Delivery in Vans</div>
+            </div>
+            <div class="mySlides">
+                <img src="https://5.imimg.com/data5/ANDROID/Default/2023/4/302594292/IQ/OC/FL/8319980/product-jpeg-250x250.jpg" style="width:100%">
+                <div class="caption">Cooling Water Tins for Functions</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel hidden" id="registerPanel">
+        <h2>Register</h2>
+        <input type="text" id="regName" placeholder="Name" required>
+        <input type="text" id="regPhone" placeholder="Phone Number" required>
+        <input type="password" id="regPassword" placeholder="Password" required>
+        <input type="password" id="regConfirmPassword" placeholder="Confirm Password" required>
+        <button class="btn" onclick="register()">Submit</button>
+        <button class="btn" onclick="showHome()">Back</button>
+    </div>
+
+    <div class="panel hidden" id="loginPanel">
+        <h2>Login</h2>
+        <input type="text" id="loginName" placeholder="Name" required>
+        <input type="text" id="loginPhone" placeholder="Phone Number" required>
+        <input type="password" id="loginPassword" placeholder="Password" required>
+        <button class="btn" onclick="login()">Submit</button>
+        <button class="btn" onclick="showHome()">Back</button>
+    </div>
+
+    <div class="panel hidden" id="customerPanel">
+        <h2>Customer Dashboard</h2>
+        <div class="feedback" id="feedback"></div>
+        <button class="btn" onclick="showOrder()">Order Water</button>
+        <button class="btn" onclick="showHistory()">Order History</button>
+        <button class="btn" onclick="logout()">Logout</button>
+        <div class="hidden" id="contactButton" onclick="showContact()">Contact Us</div>
+        <div class="hidden" id="aboutButton" onclick="showAbout()">About Us</div>
+    </div>
+
+    <div class="panel hidden" id="orderPanel">
+        <h2>Order Water</h2>
+        <select id="tinType">
+            <option value="normal">Normal Tins</option>
+            <option value="cooling">Cooling Tins</option>
+        </select>
+        <input type="number" id="tinQuantity" placeholder="Number of Tins" required>
+        <button class="btn" onclick="placeOrder()">Place Order</button>
+        <button class="btn" onclick="showCustomer()">Back</button>
+    </div>
+
+    <div class="panel hidden" id="historyPanel">
+        <h2>Order History</h2>
+        <div id="historyList"></div>
+        <button class="btn" onclick="showCustomer()">Back</button>
+    </div>
+
+    <div class="panel hidden" id="contactPanel">
+        <h2>Contact Us</h2>
+        <p>Owner Name: SURIBABU</p>
+        <p>Phone: 6301413229</p>
+        <p>Email: suribabumokamatla@gmail.com</p>
+        <p>Address: Jallikommara, Ganapavaram Mandal, West Godavari, Andhra Pradesh, India - 534196</p>
+        <div id="map" style="width:100%;height:400px;"></div>
+        <button class="btn" onclick="showCustomer()">Back</button>
+    </div>
+
+    <div class="panel hidden" id="aboutPanel">
+        <h2>About Us</h2>
+        <p>We are dedicated to providing safe and clean drinking water for all your needs.</p>
+        <button class="btn" onclick="showCustomer()">Back</button>
+    </div>
+
+    <div class="panel hidden" id="ownerPanel">
+        <h2>Owner Dashboard</h2>
+        <div class="feedback" id="ownerFeedback"></div>
+        <button class="btn" onclick="viewOrders()">View Orders</button>
+        <button class="btn" onclick="editPrices()">Edit Prices</button>
+        <button class="btn" onclick="logout()">Logout</button>
+    </div>
+</div>
+
+<footer>
+    <p>© 2024 MS Water Supplies. All rights reserved.</p>
+</footer>
+
+<script>
+    let users = [];
+    let loggedInUser = null;
+
+    function showHome() {
+        hideAllPanels(); // Hide all panels first
+        document.getElementById('homePanel').classList.remove('hidden');
+        document.getElementById('feedback').innerText = '';
+        document.getElementById('feedback').style.display = 'none';
+    }
+
+    function showRegister() {
+        hideAllPanels();
+        document.getElementById('registerPanel').classList.remove('hidden');
+        document.getElementById('feedback').innerText = '';
+        document.getElementById('feedback').style.display = 'none';
+    }
+
+    function showLogin() {
+        hideAllPanels();
+        document.getElementById('loginPanel').classList.remove('hidden');
+        document.getElementById('feedback').innerText = '';
+        document.getElementById('feedback').style.display = 'none';
+    }
+
+    function showCustomer() {
+        hideAllPanels();
+        document.getElementById('customerPanel').classList.remove('hidden');
+        document.getElementById('feedback').innerText = '';
+        document.getElementById('feedback').style.display = 'none';
+    }
+
+    function showOrder() {
+        hideAllPanels();
+        document.getElementById('orderPanel').classList.remove('hidden');
+    }
+
+    function showHistory() {
+        hideAllPanels();
+        document.getElementById('historyPanel').classList.remove('hidden');
+        displayOrderHistory();
+    }
+
+    function showContact() {
+        hideAllPanels();
+        document.getElementById('contactPanel').classList.remove('hidden');
+        initMap(); // Initialize map
+    }
+
+    function showAbout() {
+        hideAllPanels();
+        document.getElementById('aboutPanel').classList.remove('hidden');
+    }
+
+    function hideAllPanels() {
+        const panels = document.querySelectorAll('.panel');
+        panels.forEach(panel => {
+            panel.classList.add('hidden');
+        });
+    }
+
+    function register() {
+        const name = document.getElementById('regName').value;
+        const phone = document.getElementById('regPhone').value;
+        const password = document.getElementById('regPassword').value;
+        const confirmPassword = document.getElementById('regConfirmPassword').value;
+
+        if (password !== confirmPassword) {
+            showFeedback('Passwords do not match.', 'feedback');
+            return;
+        }
+
+        const existingUser = users.find(user => user.phone === phone);
+        if (existingUser) {
+            showFeedback('User already exists.', 'feedback');
+            return;
+        }
+
+        const newUser = {
+            name,
+            phone,
+            password,
+            role: 'customer'
+        };
+        users.push(newUser);
+        showFeedback('Registration successful! You can now log in.', 'feedback');
+        showHome();
+    }
+
+    function login() {
+        const name = document.getElementById('loginName').value;
+        const phone = document.getElementById('loginPhone').value;
+        const password = document.getElementById('loginPassword').value;
+
+        const user = users.find(user => user.phone === phone && user.password === password);
+        if (user) {
+            loggedInUser = user;
+            if (user.role === 'customer') {
+                showCustomer();
+            } else if (user.role === 'owner') {
+                showOwner();
+            }
+        } else {
+            showFeedback('Invalid credentials. Please try again.', 'feedback');
+        }
+    }
+
+    function placeOrder() {
+        const tinType = document.getElementById('tinType').value;
+        const quantity = document.getElementById('tinQuantity').value;
+
+        if (quantity <= 0) {
+            showFeedback('Please enter a valid quantity.', 'feedback');
+            return;
+        }
+
+        showFeedback(`Order placed for ${quantity} ${tinType} tin(s).`, 'feedback');
+        document.getElementById('tinQuantity').value = '';
+    }
+
+    function displayOrderHistory() {
+        const historyList = document.getElementById('historyList');
+        historyList.innerHTML = '<p>No orders placed yet.</p>'; // Default message
+        // Here you can implement displaying past orders from users
+    }
+
+    function logout() {
+        loggedInUser = null;
+        showHome();
+    }
+
+    function showFeedback(message, feedbackId) {
+        const feedbackElement = document.getElementById(feedbackId);
+        feedbackElement.innerText = message;
+        feedbackElement.style.display = 'block'; // Show feedback
+        setTimeout(() => {
+            feedbackElement.style.display = 'none'; // Hide after a timeout
+        }, 3000);
+    }
+
+    function changeLanguage() {
+        const language = document.getElementById('language').value;
+        if (language === 'te') {
+            document.body.innerHTML = '<h1>ఎంఎస్ వాటర్ సప్లయిస్</h1>'; // Add your translations here
+            // Additional translations can be handled similarly.
+        } else {
+            // Reset to English or load original HTML content
+            location.reload(); // Simplest way to reset
+        }
+    }
+
+    // Owner Functions
+    function showOwner() {
+        hideAllPanels();
+        document.getElementById('ownerPanel').classList.remove('hidden');
+        document.getElementById('ownerFeedback').innerText = '';
+        document.getElementById('ownerFeedback').style.display = 'none';
+    }
+
+    function viewOrders() {
+        // Implement viewing orders for the owner
+        showFeedback('Viewing all orders.', 'ownerFeedback');
+    }
+
+    function editPrices() {
+        // Implement editing prices for the owner
+        showFeedback('Editing prices.', 'ownerFeedback');
+    }
+
+    // Map Initialization
+    function initMap() {
+        const location = { lat: 16.9003, lng: 81.0587 }; // Jallikommara, West Godavari, AP
+        const map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 15,
+            center: location,
+        });
+        const marker = new google.maps.Marker({
+            position: location,
+            map: map,
+        });
+    }
+</script>
+
+<!-- Load Google Maps API -->
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
+</body>
+</html>
